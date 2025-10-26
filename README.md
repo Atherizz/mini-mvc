@@ -1,3 +1,5 @@
+# mini-mvc
+
 A clean and minimal boilerplate for building native PHP applications using the MVC pattern. This repository is designed as a lightweight starting template.
 
 ## Features
