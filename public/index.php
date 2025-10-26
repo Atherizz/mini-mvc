@@ -1,34 +1,14 @@
 <?php
+use App\Http\Middleware\AuthMiddleware;
+
 session_start();
 
 define('BASE_PATH', dirname(__DIR__));
 define('BASE_URL', '/mini-mvc/public');
 
-require BASE_PATH . '/app/helpers.php';
-require BASE_PATH . '/app/Http/Middleware/AuthMiddleware.php';
+require BASE_PATH . '/vendor/autoload.php';
 
 $routes = require BASE_PATH . '/routes/web.php';
-
-spl_autoload_register(function ($class) {
-    $controllerFile = BASE_PATH . '/app/Http/Controllers/' . $class . '.php';
-    if (file_exists($controllerFile)) {
-        require $controllerFile;
-        return;
-    }
-
-    $modelFile = BASE_PATH . '/app/Models/' . $class . '.php';
-    if (file_exists($modelFile)) {
-        require $modelFile;
-        return;
-    }
-
-    $coreFile = BASE_PATH . '/app/Core/' . $class . '.php';
-    if (file_exists($coreFile)) {
-        require $coreFile;
-        return;
-    }
-});
-
 
 $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); 
 

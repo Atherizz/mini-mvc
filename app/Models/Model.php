@@ -1,6 +1,7 @@
 <?php
-require BASE_PATH . '/app/Core/Database.php';
+namespace App\Models;
 
+use App\Core\Database;
 class Model {
     public $db;
     public $error;

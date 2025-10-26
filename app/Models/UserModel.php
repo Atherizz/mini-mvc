@@ -1,5 +1,8 @@
 <?php
+namespace App\Models;
 
+use App\Models\Model;
+use PDO;
 class UserModel extends Model {
 
     public function getAllUsers() {

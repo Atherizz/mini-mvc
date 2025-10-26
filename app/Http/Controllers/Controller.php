@@ -1,31 +1,33 @@
 <?php
-class Controller 
+
+namespace App\Http\Controllers;
+
+class Controller
 {
     protected $loadedModels = [];
 
-    public function redirect($path) 
+    public function redirect($path)
     {
         header("Location: " . BASE_URL . $path);
         exit;
     }
 
-    public function model($modelName) {
+    protected function model($modelName)
+    {
         $modelName = ucfirst($modelName);
 
-        if (isset($this->loadedModels[$modelName])) {
-            return $this->loadedModels[$modelName];
+        $fullModelName = "App\\Models\\" . $modelName;
+
+        if (isset($this->loadedModels[$fullModelName])) {
+            return $this->loadedModels[$fullModelName];
         }
 
-        if (class_exists($modelName)) {
-        $model = new $modelName();
+        if (class_exists($fullModelName)) {
+            $model = new $fullModelName(); 
+            $this->loadedModels[$fullModelName] = $model;
+            return $model;
+        }
 
-        $this->loadedModels[$modelName] = $model; 
-        
-        return $model;
+        throw new \Exception("Model {$fullModelName} not found.");
     }
-
-
-        throw new \Exception("Model {$modelName} not found.");
-    }
-
 }

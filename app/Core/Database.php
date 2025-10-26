@@ -1,4 +1,8 @@
 <?php
+namespace App\Core;
+
+use PDO; 
+use PDOException;
 class Database {
     private $host = 'localhost';
     private $db_name = 'technical_test_sekawan';

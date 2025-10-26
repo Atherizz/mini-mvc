@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Http\Middleware;
 Class AuthMiddleware {
     public function isLoggedIn() {
         if (session_status() === PHP_SESSION_NONE) {
