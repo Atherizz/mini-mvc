@@ -5,7 +5,7 @@ use PDO;
 use PDOException;
 class Database {
     private $host = 'localhost';
-    private $db_name = 'technical_test_sekawan';
+    private $db_name = 'databaseku';
     private $username = 'root';
     private $password = '';
     private $conn;

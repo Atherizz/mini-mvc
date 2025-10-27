@@ -2,9 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\AuthMiddleware;
+
 class Controller
 {
     protected $loadedModels = [];
+    protected $authMiddleware;
+
+    public function __construct()
+    {
+        $this->authMiddleware = new AuthMiddleware(); 
+    }
 
     public function redirect($path)
     {

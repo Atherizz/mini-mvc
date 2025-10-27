@@ -1,92 +1,61 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Form Register Sederhana</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      display: flex;
-      height: 100vh;
-      align-items: center;
-      justify-content: center;
-    }
+    <?php require BASE_PATH . '/resources/views/layouts/navbar.php'; ?>
+<!-- Konten Form Register -->
+    <div class="min-h-[calc(100vh-64px)] flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+        
+        <!-- Box Form -->
+        <div class="w-full sm:max-w-md mt-6 px-6 py-8 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            
+            <h2 class="text-center text-3xl font-bold text-gray-900 mb-6">
+                Create Account
+            </h2>
 
-    .register-container {
-      background: #fff;
-      padding: 20px 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      width: 300px;
-    }
+            <!-- Form disesuaikan dari kodemu -->
+            <!-- Pastikan form action-mu benar -->
+            <form action="<?= BASE_URL ?? '.' ?>/register" method="POST">
+                
+                <!-- Menampilkan Error (jika ada) -->
+                <?php if (isset($_SESSION['error'])): ?>
+                <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
+                    <?= $_SESSION['error']; ?>
+                    <?php unset($_SESSION['error']); ?>
+                </div>
+                <?php endif; ?>
 
-    h2 {
-      text-align: center;
-    }
+                <!-- Input Nama -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
+                    <input type="text" id="name" name="nama" required 
+                           class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                </div>
 
-    input[type="text"],
-    input[type="password"],
-    input[type="email"] {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
+                <!-- Input Email -->
+                <div class="mt-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+                    <input type="email" id="email" name="email" required 
+                           class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                </div>
 
-    button[type="submit"] {
-      width: 100%;
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+                <!-- Input Password -->
+                <div class="mt-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
+                    <input type="password" id="password" name="password" required 
+                           class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                </div>
 
-    button[type="submit"]:hover {
-      background-color: #45a049;
-    }
+                <!-- Tombol Submit -->
+                <div class="mt-6">
+                    <button type="submit" name="submit" 
+                            class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Register
+                    </button>
+                </div>
 
-    .login-link {
-      display: block;
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .login-link a {
-      text-decoration: none;
-      color: #4CAF50;
-    }
-
-    .login-link a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="register-container">
-    <h2>Register</h2>
-    <form action="/register" method="POST">
-      <label for="name">Nama:</label>
-      <input type="text" id="name" name="nama" required>
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
-
-      <button type="submit" name="submit">Register</button>
-    </form>
-
-    <div class="login-link">
-      <p>Sudah punya akun? <a href="/login">Login di sini</a></p>
+                <!-- Link ke Login -->
+                <div class="text-center mt-4">
+                    <a class="text-sm text-gray-600 hover:text-gray-900 underline" href="<?= BASE_URL ?? '.' ?>/login">
+                        Already have an account? Log in.
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
-
-</body>
-</html>

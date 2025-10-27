@@ -30,6 +30,14 @@ $routesForMethod = $routes[$method] ?? [];
 $routeFound = false;
 
 foreach ($routesForMethod as $routePath => $routeInfo) {
+
+    if (isset($routeInfo['view'])) {
+        $viewName = $routeInfo['view'];
+        view($viewName); 
+        $routeFound = true;
+    } else if (isset($routeInfo['controller']) && isset($routeInfo['action'])) {
+    $controllerName = $routeInfo['controller'];
+    $action = $routeInfo['action'];
     // Ubah route path (e.g., /ekskul/detail/{id}) menjadi pola Regex
     // Ini akan mengubah {id} menjadi ([a-zA-Z0-9_]+)
     $pattern = preg_replace('/\{[a-zA-Z0-9_]+\}/', '([a-zA-Z0-9_]+)', $routePath);
@@ -43,9 +51,7 @@ foreach ($routesForMethod as $routePath => $routeInfo) {
         array_shift($matches); 
         $params = $matches;
 
-        $controllerName = $routeInfo['controller'];
-        $action = $routeInfo['action'];
-        
+
         if (isset($routeInfo['middleware'])) {
             $auth = new AuthMiddleware();
 
@@ -73,6 +79,9 @@ foreach ($routesForMethod as $routePath => $routeInfo) {
             $routeFound = true; 
             break;
         }
+        }
+        
+
     }
 }
 

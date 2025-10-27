@@ -11,13 +11,13 @@ Class AuthMiddleware {
     
     public function requireLogin() {
         if (!self::isLoggedIn()) {
-            header('Location: /login');
+           header('Location: ' . BASE_URL . '/login');
             exit;
         }
     }    
     public function redirectIfLoggedIn() {
         if (self::isLoggedIn()) {
-            header('Location: /');
+            header('Location: ' . BASE_URL . '/equipment');;
             exit;
         }
     }
@@ -31,7 +31,7 @@ Class AuthMiddleware {
     
     public function requireAdmin() {
         if (!self::isLoggedIn() || $_SESSION['user_role'] !== 'admin') {
-            header('Location: /');
+            header('Location: ' . BASE_URL . '/');;
             exit;
         }
     } 

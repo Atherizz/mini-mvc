@@ -1,5 +1,5 @@
 <?php
-require 'models/UserModel.php';
+use App\Models\UserModel;
 
 class DatabaseSeeder {
     private $userModel;
